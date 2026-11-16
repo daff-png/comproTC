@@ -21,7 +21,7 @@ const steps = [
 ];
 
 function Logo() {
-  return <span className="brand-symbol-image" role="img" aria-label="Teman Canggih TC symbol" />;
+  return <img className="brand-symbol-image" src="/tc-symbol.svg" width="68" height="44" alt="Teman Canggih TC symbol" />;
 }
 
 function SectionLabel({ children, light = false }) {
@@ -65,7 +65,7 @@ export default function Home() {
     <main id="top">
       <section className="hero">
         <div className="hero-emblem" aria-hidden="true" style={{ transform: `translateY(${Math.min(scrollY * .07, 42)}px)` }}>
-          <span className="brand-symbol-image brand-symbol-large" />
+          <img className="brand-symbol-large" src="/tc-symbol.svg" width="300" height="192" alt="" />
         </div>
         <div className="hero-content container">
           <div className="hero-copy" style={{ transform: `translateY(${Math.min(scrollY * .08, 38)}px)` }}>
@@ -74,6 +74,7 @@ export default function Home() {
             <p>An independent team for technology and business solutions.</p>
             <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
+          <a className="hero-bottom" href="#about">SCROLL FOR MORE <ArrowDown size={15}/></a>
         </div>
       </section>
 

@@ -21,4 +21,4 @@ Next.js dikonfigurasi untuk static export. Hasil siap unggah ada di folder `out/
 
 ## Konten
 
-Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Website menampilkan hanya simbol TC dari gambar logo asli (`public/brand-logo-original.png`).
+Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Simbol TC ditelusuri dari gambar logo asli menjadi SVG tajam dan transparan (`public/tc-symbol.svg`); sumber bitmap tetap ada di `public/brand-logo-original.png`.
