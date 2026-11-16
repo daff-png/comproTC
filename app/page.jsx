@@ -34,17 +34,16 @@ export default function Home() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) requestAnimationFrame(() => { setScrollY(window.scrollY); ticking = false; });
-      ticking = true;
-    };
+    const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('hashchange', onScroll);
+    onScroll();
+    const anchorSync = window.setTimeout(onScroll, 100);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
     }, { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    return () => { window.removeEventListener('scroll', onScroll); observer.disconnect(); };
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('hashchange', onScroll); window.clearTimeout(anchorSync); observer.disconnect(); };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -64,6 +63,8 @@ export default function Home() {
 
     <main id="top">
       <section className="hero">
+        <div className="hero-cut" aria-hidden="true" />
+        <div className="hero-panel-label" aria-hidden="true">THE TC SIGNATURE <span>HUMAN × TECHNOLOGY</span></div>
         <div className="hero-emblem" aria-hidden="true" style={{ transform: `translateY(${Math.min(scrollY * .07, 42)}px)` }}>
           <img className="brand-symbol-large" src="/tc-symbol.svg" width="300" height="192" alt="" />
         </div>
@@ -74,7 +75,36 @@ export default function Home() {
             <p>An independent team for technology and business solutions.</p>
             <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
-          <a className="hero-bottom" href="#about">SCROLL FOR MORE <ArrowDown size={15}/></a>
+          <a className="hero-bottom" href="#signature">SCROLL FOR MORE <ArrowDown size={15}/></a>
+        </div>
+      </section>
+
+      <section id="signature" className="signature-section" aria-labelledby="signature-title">
+        <div className="container">
+          <div className="signature-heading">
+            <SectionLabel>BEHIND THE MARK</SectionLabel>
+            <h2 id="signature-title">Two forms.<br/><em>One way forward.</em></h2>
+            <p>The TC symbol reflects how we work: close to people, precise with technology, and stronger when both move together.</p>
+          </div>
+          <div className="signature-layout">
+            <div className="signature-art" aria-hidden="true">
+              <div className="signature-art-top"><span>TC / 01</span><span>THINK BEYOND · BUILD BETTER</span></div>
+              <svg className="signature-mark" viewBox="174 189 197 126" fill="none">
+                <defs>
+                  <linearGradient id="signature-t" x1="180" y1="195" x2="285" y2="234" gradientUnits="userSpaceOnUse"><stop stopColor="#0F172A"/><stop offset="1" stopColor="#17346C"/></linearGradient>
+                  <linearGradient id="signature-c" x1="257" y1="260" x2="365" y2="199" gradientUnits="userSpaceOnUse"><stop stopColor="#1550B3"/><stop offset="1" stopColor="#2563EB"/></linearGradient>
+                </defs>
+                <path className="signature-t" fill="url(#signature-t)" d="M291 195H213c-15 0-27 11-33 30l47 1-16 82c18 0 31-9 36-30l10-46 24-24 10-13Z"/>
+                <path className="signature-c" fill="url(#signature-c)" d="M302 195h63l-20 31h-40c-6 0-10 3-12 11l-5 23c-2 11 1 17 8 17h68l-26 31h-43c-25 0-38-17-38-42 0-12 2-22 5-30l40-41Z"/>
+              </svg>
+              <span className="signature-art-bottom">HUMAN INSIGHT <span>+</span> TECHNICAL PRECISION</span>
+            </div>
+            <div className="signature-story">
+              <div className="signature-story-item"><span>01 / THE T</span><h3>Human by nature.</h3><p>The rounded form stands for an approach that listens, understands, and works together.</p></div>
+              <div className="signature-story-item"><span>02 / THE C</span><h3>Precise by design.</h3><p>The sharp form reflects technology, clear thinking, and care in how we build.</p></div>
+              <div className="signature-story-result"><span>WHEN THEY CONNECT</span><strong>Meaningful progress.</strong><ArrowUpRight size={24}/></div>
+            </div>
+          </div>
         </div>
       </section>
 
