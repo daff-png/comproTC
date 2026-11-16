@@ -109,7 +109,7 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
     }, { threshold: .12 });
-    document.querySelectorAll('.reveal, .signature-heading, .signature-art, .signature-story, .services-list').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .signature-heading, .signature-art, .signature-story, .services-list, .footer-main, .footer-bottom').forEach(el => observer.observe(el));
     return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('hashchange', onScroll); window.removeEventListener('resize', onScroll); reducedMotion.removeEventListener('change', onScroll); window.cancelAnimationFrame(scrollFrame); window.clearTimeout(anchorSync); observer.disconnect(); };
   }, []);
 
@@ -127,14 +127,20 @@ export default function Home() {
   const moveServiceCard = (event) => {
     if (event.pointerType !== 'mouse') return;
     const rect = event.currentTarget.getBoundingClientRect();
-    const tiltX = ((event.clientY - rect.top) / rect.height - .5) * -6;
-    const tiltY = ((event.clientX - rect.left) / rect.width - .5) * 6;
+    const pointerX = (event.clientX - rect.left) / rect.width;
+    const pointerY = (event.clientY - rect.top) / rect.height;
+    const tiltX = (pointerY - .5) * -6;
+    const tiltY = (pointerX - .5) * 6;
     event.currentTarget.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
     event.currentTarget.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
+    event.currentTarget.style.setProperty('--spotlight-x', `${(pointerX * 100).toFixed(1)}%`);
+    event.currentTarget.style.setProperty('--spotlight-y', `${(pointerY * 100).toFixed(1)}%`);
+    event.currentTarget.style.setProperty('--spotlight-opacity', '1');
   };
   const resetServiceCard = (event) => {
     event.currentTarget.style.setProperty('--tilt-x', '0deg');
     event.currentTarget.style.setProperty('--tilt-y', '0deg');
+    event.currentTarget.style.setProperty('--spotlight-opacity', '0');
   };
   const progress = typeof document === 'undefined' ? 0 : scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
@@ -211,7 +217,7 @@ export default function Home() {
           <div className="section-heading reveal"><div><SectionLabel light>02 / WHAT WE DO</SectionLabel><h2>Built around<br/><em>your challenge.</em></h2></div><p>Five connected practice areas. One shared commitment to solutions that fit your objectives.</p></div>
           <div className="services-layout">
             <div className="services-list">{services.map((s, i) => <button key={s.number} className={`service-row ${activeService === i ? 'active' : ''}`} onMouseEnter={() => setActiveService(i)} onFocus={() => setActiveService(i)} onClick={() => setActiveService(i)} aria-label={`View ${s.title}`}><span className="service-number">{s.number}</span><span className="service-title">{s.title}<small>{s.category}</small></span><ArrowUpRight className="service-arrow" size={24}/></button>)}</div>
-            <div className="service-visual reveal" aria-live="polite" onPointerMove={moveServiceCard} onPointerLeave={resetServiceCard}><div className="visual-top" key={`top-${activeService}`}><span>TC / CAPABILITY {services[activeService].number}</span><span>↗</span></div><div className="service-glyph" key={activeService}>{services[activeService].glyph}</div><div className="visual-bottom" key={`bottom-${activeService}`}><span>{services[activeService].category}</span><p>{services[activeService].description}</p></div></div>
+            <div className="service-visual reveal" aria-live="polite" onPointerMove={moveServiceCard} onPointerLeave={resetServiceCard}><div className="service-spotlight" aria-hidden="true"/><div className="visual-top" key={`top-${activeService}`}><span>TC / CAPABILITY {services[activeService].number}</span><span>↗</span></div><div className="service-glyph" key={activeService}>{services[activeService].glyph}</div><div className="visual-bottom" key={`bottom-${activeService}`}><span>{services[activeService].category}</span><p>{services[activeService].description}</p></div></div>
           </div>
         </div>
       </section>
