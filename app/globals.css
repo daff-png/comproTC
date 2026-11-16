@@ -202,3 +202,14 @@
 .button::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 25%,rgba(6,182,212,.16) 50%,transparent 75%);transform:translate3d(-150%,0,0);transition:transform .75s cubic-bezier(.22,1,.36,1)}
 .button:hover::after{transform:translate3d(150%,0,0)}
 @media(prefers-reduced-motion:reduce){.signature-heading.visible h2,.intro-main.reveal.visible h2,.section-heading.reveal.visible h2,.philosophy-inner > .reveal.visible h2,.approach-heading.reveal.visible h2,.team-head.reveal.visible h2,.contact-inner > .reveal.visible h2,.hero-ready .hero-art-plane:before,.step.reveal.visible .step-marker span,.service-glyph,.visual-top,.visual-bottom{animation:none!important}.button::after{transition:none;opacity:0}}
+
+/* Final motion pass: a curtain transition and responsive depth. */
+.loading-screen{clip-path:inset(0);transition:clip-path .95s cubic-bezier(.76,0,.24,1),opacity .8s ease,visibility .95s}
+.loading-screen--hidden{clip-path:inset(0 0 100% 0)}
+.hero-ready .hero-monogram{animation:hero-float 6.5s 1.2s ease-in-out infinite alternate}
+@keyframes hero-float{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-9px,0)}}
+.service-visual.reveal.visible{transform:perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .28s ease-out}
+.service-row{position:relative}
+.service-row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.service-row:hover::after,.service-row:focus-visible::after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.loading-screen{transition:none}.hero-ready .hero-monogram{animation:none}.service-visual.reveal.visible{transform:none;transition:none}.service-row::after{display:none}}
