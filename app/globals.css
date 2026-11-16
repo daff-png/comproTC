@@ -89,15 +89,8 @@
 .signature-heading h2 em{font-style:normal;color:var(--blue)}
 .signature-heading>p{max-width:400px;margin:0 0 8px;color:#5c6a83;font-size:14px;line-height:1.85}
 .signature-layout{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(340px,.78fr);gap:clamp(36px,5vw,80px);align-items:stretch}
-.signature-art{position:relative;min-height:510px;display:grid;place-items:center;overflow:hidden;background:#e2ebf9;border:1px solid #d3e0f2}
-.signature-art:before{content:"";position:absolute;inset:-18% 17% -18% auto;width:32%;background:linear-gradient(180deg,rgba(37,99,235,.09),rgba(6,182,212,.035));transform:skewX(-17deg)}
-.signature-art:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(24,69,140,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(24,69,140,.045) 1px,transparent 1px);background-size:75px 75px;pointer-events:none}
-.signature-art-top{position:absolute;z-index:2;top:25px;left:30px;right:30px;display:flex;justify-content:space-between;gap:16px;color:#647796;font-size:10px;font-weight:600;letter-spacing:.14em}
-.signature-mark{position:relative;z-index:2;display:block;width:min(68%,510px);height:auto;filter:drop-shadow(0 22px 20px rgba(16,42,86,.12))}
-.signature-t,.signature-c{opacity:1;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-@media(hover:hover){.signature-art:hover .signature-t{transform:translateX(-5px)}.signature-art:hover .signature-c{transform:translateX(5px)}}
-.signature-art-bottom{position:absolute;z-index:2;left:30px;bottom:25px;color:#415a80;font-size:10px;font-weight:600;letter-spacing:.14em}
-.signature-art-bottom span{color:var(--blue);margin:0 8px}
+.signature-art{position:relative;min-height:510px;overflow:hidden;background:#e2ebf9;border:1px solid #d3e0f2}
+.signature-photo{object-fit:cover;object-position:center bottom}
 .signature-story{display:flex;flex-direction:column;justify-content:space-between}
 .signature-story-item{padding:18px 0 32px;border-top:1px solid #bdcbe0}
 .signature-story-item>span,.signature-story-result>span{color:#3565b3;font-size:10px;font-weight:700;letter-spacing:.16em}
@@ -109,9 +102,8 @@
 .signature-story-result svg{position:absolute;right:24px;bottom:25px;color:#b9e5ff}
 .service-visual:before{display:block;left:auto;right:0;top:0;width:48%;height:100%;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:linear-gradient(150deg,rgba(47,115,237,.36),rgba(6,182,212,.07));clip-path:polygon(28% 0,100% 0,100% 100%,0 100%)}
 .service-visual:after{display:block;left:auto;right:0;top:0;width:48%;height:100%;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;transform:none;background:#a6e9fb;clip-path:polygon(28% 0,28.8% 0,.8% 100%,0 100%);opacity:.5}
-@media(max-width:760px){.hero-cut{width:85%;height:56%;right:-18%;clip-path:polygon(30% 0,30.8% 0,75.8% 100%,75% 100%)}.hero-panel-label{display:none}.hero-emblem{display:block;top:17%;right:7%;width:clamp(88px,24vw,140px);opacity:1}.signature-section{padding:88px 0 98px}.signature-heading{display:block;margin-bottom:38px}.signature-heading h2{font-size:clamp(45px,10vw,65px);margin:25px 0 20px}.signature-heading>p{font-size:13px;max-width:520px}.signature-layout{display:block}.signature-art{min-height:340px;margin-bottom:34px}.signature-mark{width:68%}.signature-story-item{padding:20px 0 26px}.signature-story-item h3{font-size:29px}.signature-story-result{margin-top:8px}}
-@media(max-width:430px){.signature-art{min-height:300px}.signature-art-top{left:20px;right:20px;top:20px;font-size:8px}.signature-art-bottom{left:20px;bottom:20px;font-size:8px}.signature-story-result strong{font-size:20px}}
-@media(prefers-reduced-motion:reduce){.signature-t,.signature-c{transition:none;transform:none;opacity:1}}
+@media(max-width:760px){.hero-cut{width:85%;height:56%;right:-18%;clip-path:polygon(30% 0,30.8% 0,75.8% 100%,75% 100%)}.hero-panel-label{display:none}.hero-emblem{display:block;top:17%;right:7%;width:clamp(88px,24vw,140px);opacity:1}.signature-section{padding:88px 0 98px}.signature-heading{display:block;margin-bottom:38px}.signature-heading h2{font-size:clamp(45px,10vw,65px);margin:25px 0 20px}.signature-heading>p{font-size:13px;max-width:520px}.signature-layout{display:block}.signature-art{min-height:340px;margin-bottom:34px}.signature-story-item{padding:20px 0 26px}.signature-story-item h3{font-size:29px}.signature-story-result{margin-top:8px}}
+@media(max-width:430px){.signature-art{min-height:300px}.signature-story-result strong{font-size:20px}}
 
 /* A dimensional TC mark creates the first memorable brand moment. */
 .hero-experience{--pointer-x:0px;--pointer-y:0px;background:#07152d;isolation:isolate}

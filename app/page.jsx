@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from 'lucide-react';
 
 const services = [
@@ -113,17 +114,8 @@ export default function Home() {
             <p>The TC symbol reflects how we work: close to people, precise with technology, and stronger when both move together.</p>
           </div>
           <div className="signature-layout">
-            <div className="signature-art" aria-hidden="true">
-              <div className="signature-art-top"><span>TC / 01</span><span>THINK BEYOND · BUILD BETTER</span></div>
-              <svg className="signature-mark" viewBox="174 189 197 126" fill="none">
-                <defs>
-                  <linearGradient id="signature-t" x1="180" y1="195" x2="285" y2="234" gradientUnits="userSpaceOnUse"><stop stopColor="#0F172A"/><stop offset="1" stopColor="#17346C"/></linearGradient>
-                  <linearGradient id="signature-c" x1="257" y1="260" x2="365" y2="199" gradientUnits="userSpaceOnUse"><stop stopColor="#1550B3"/><stop offset="1" stopColor="#2563EB"/></linearGradient>
-                </defs>
-                <path className="signature-t" fill="url(#signature-t)" d="M291 195H213c-15 0-27 11-33 30l47 1-16 82c18 0 31-9 36-30l10-46 24-24 10-13Z"/>
-                <path className="signature-c" fill="url(#signature-c)" d="M302 195h63l-20 31h-40c-6 0-10 3-12 11l-5 23c-2 11 1 17 8 17h68l-26 31h-43c-25 0-38-17-38-42 0-12 2-22 5-30l40-41Z"/>
-              </svg>
-              <span className="signature-art-bottom">HUMAN INSIGHT <span>+</span> TECHNICAL PRECISION</span>
+            <div className="signature-art">
+              <Image className="signature-photo" src="/foto_atas_HD.png" alt="Tim Teman Canggih berkumpul bersama" fill sizes="(max-width: 760px) 100vw, 60vw" />
             </div>
             <div className="signature-story">
               <div className="signature-story-item"><span>01 / THE T</span><h3>Human by nature.</h3><p>The rounded form stands for an approach that listens, understands, and works together.</p></div>
