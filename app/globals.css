@@ -187,3 +187,18 @@
 .button:hover svg,.nav-contact:hover svg{transform:translate3d(4px,-4px,0)}
 .circle-arrow:hover svg{transform:translate3d(0,3px,0)}
 @media(prefers-reduced-motion:reduce){.hero-ready .hero-mark-t,.hero-ready .hero-mark-c,.hero-ready .hero-mark-beam,.hero-ready .hero-eyebrow,.hero-ready h1,.hero-ready .hero-copy>p,.hero-ready .hero-actions,.hero-ready .hero-bottom,.signature-heading.visible,.signature-art.visible,.signature-story.visible,.signature-art.visible .signature-photo,.signature-story.visible > *,.team-list.reveal.visible > div,.philosophy-copy.reveal.visible > *,.services-list.visible .service-row{animation:none!important}.hero-ready .hero-mark-beam{stroke-dashoffset:0}.button svg,.nav-contact svg,.circle-arrow svg{transition:none}.button:hover svg,.nav-contact:hover svg,.circle-arrow:hover svg{transform:none}}
+
+/* Cinematic motion details; resting styles remain unchanged. */
+.signature-heading.visible h2,.intro-main.reveal.visible h2,.section-heading.reveal.visible h2,.philosophy-inner > .reveal.visible h2,.approach-heading.reveal.visible h2,.team-head.reveal.visible h2,.contact-inner > .reveal.visible h2{animation:headline-unveil 1.05s cubic-bezier(.22,1,.36,1) both}
+@keyframes headline-unveil{from{opacity:0;clip-path:inset(100% 0 0);transform:translate3d(0,28px,0)}to{opacity:1;clip-path:inset(0);transform:translate3d(0,0,0)}}
+.hero-ready .hero-art-plane:before{animation:plane-sheen 5s 1.4s ease-in-out infinite alternate}
+@keyframes plane-sheen{from{opacity:.45;transform:translate3d(-16%,0,0)}to{opacity:1;transform:translate3d(16%,0,0)}}
+.step.reveal.visible .step-marker span{animation:marker-arrive .8s .18s cubic-bezier(.22,1,.36,1) both}
+@keyframes marker-arrive{from{opacity:0;transform:scale(.45)}to{opacity:1;transform:scale(1)}}
+.service-glyph{animation:service-glyph-in .65s cubic-bezier(.22,1,.36,1) both}
+.visual-top,.visual-bottom{animation:luxury-enter .55s cubic-bezier(.22,1,.36,1) both}
+@keyframes service-glyph-in{from{opacity:0;transform:translate3d(0,16px,0) scale(.92)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+.button{position:relative;overflow:hidden}
+.button::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 25%,rgba(6,182,212,.16) 50%,transparent 75%);transform:translate3d(-150%,0,0);transition:transform .75s cubic-bezier(.22,1,.36,1)}
+.button:hover::after{transform:translate3d(150%,0,0)}
+@media(prefers-reduced-motion:reduce){.signature-heading.visible h2,.intro-main.reveal.visible h2,.section-heading.reveal.visible h2,.philosophy-inner > .reveal.visible h2,.approach-heading.reveal.visible h2,.team-head.reveal.visible h2,.contact-inner > .reveal.visible h2,.hero-ready .hero-art-plane:before,.step.reveal.visible .step-marker span,.service-glyph,.visual-top,.visual-bottom{animation:none!important}.button::after{transition:none;opacity:0}}
