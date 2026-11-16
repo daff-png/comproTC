@@ -148,3 +148,11 @@
 @keyframes loading-progress{from{transform:translateX(-100%)}to{transform:translateX(330%)}}
 @keyframes loading-safety-hide{to{opacity:0;visibility:hidden;pointer-events:none}}
 @media(prefers-reduced-motion:reduce){.loading-screen{transition:none}.loading-screen-logo,.loading-screen-track span{animation:none}}
+
+/* Subtle depth as the section passes through the viewport. */
+.hero-experience .hero-art-inner{transform:translate3d(var(--pointer-x),calc(var(--pointer-y) + var(--parallax-y,0px)),0)}
+.signature-photo{transform:translate3d(0,var(--parallax-y,0px),0) scale(1.16);will-change:transform}
+.philosophy::before{content:"";position:absolute;z-index:1;right:-8%;top:-24%;width:min(58vw,780px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(152,214,255,.2),rgba(116,183,255,.08) 40%,transparent 70%);transform:translate3d(0,var(--parallax-y,0px),0);will-change:transform;pointer-events:none}
+.contact::before{content:"";position:absolute;z-index:0;right:-13%;top:-35%;width:min(62vw,820px);aspect-ratio:1;border:1px solid rgba(109,183,255,.2);border-radius:50%;box-shadow:0 0 0 90px rgba(37,99,235,.045),0 0 0 180px rgba(37,99,235,.025),inset 0 0 120px rgba(37,99,235,.12);transform:translate3d(0,var(--parallax-y,0px),0);will-change:transform;pointer-events:none}
+@media(max-width:760px){.philosophy::before{right:-55%;top:-10%;width:100vw}.contact::before{right:-70%;top:-5%;width:120vw}}
+@media(prefers-reduced-motion:reduce){.hero-experience .hero-art-inner{transform:none!important}.signature-photo{transform:scale(1.16)}.philosophy::before,.contact::before{transform:none}}

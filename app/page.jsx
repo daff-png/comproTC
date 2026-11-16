@@ -77,16 +77,40 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
+    const parallaxSections = document.querySelectorAll('[data-parallax-speed]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let scrollFrame = 0;
+    const updateScroll = () => {
+      scrollFrame = 0;
+      setScrollY(window.scrollY);
+      if (reducedMotion.matches) return;
+
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+      parallaxSections.forEach((section) => {
+        const bounds = section.getBoundingClientRect();
+        if (bounds.bottom < 0 || bounds.top > viewportHeight) return;
+        const speed = Number(section.dataset.parallaxSpeed);
+        const limit = Number(section.dataset.parallaxMax);
+        const distance = viewportCenter - (bounds.top + bounds.height / 2);
+        const offset = Math.max(-limit, Math.min(limit, distance * speed));
+        section.style.setProperty('--parallax-y', `${Math.round(offset)}px`);
+      });
+    };
+    const onScroll = () => {
+      if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateScroll);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('hashchange', onScroll);
+    window.addEventListener('resize', onScroll);
+    reducedMotion.addEventListener('change', onScroll);
     onScroll();
     const anchorSync = window.setTimeout(onScroll, 100);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
     }, { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('hashchange', onScroll); window.clearTimeout(anchorSync); observer.disconnect(); };
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('hashchange', onScroll); window.removeEventListener('resize', onScroll); reducedMotion.removeEventListener('change', onScroll); window.cancelAnimationFrame(scrollFrame); window.clearTimeout(anchorSync); observer.disconnect(); };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -123,7 +147,7 @@ export default function Home() {
     </header>
 
     <main id="top">
-      <section className="hero hero-experience" style={{ '--split-left': `${-Math.min(scrollY * .028, 24)}px`, '--split-right': `${Math.min(scrollY * .028, 24)}px` }} onPointerMove={moveHero} onPointerLeave={resetHero}>
+      <section className="hero hero-experience" data-parallax-speed="0.12" data-parallax-max="72" style={{ '--split-left': `${-Math.min(scrollY * .028, 24)}px`, '--split-right': `${Math.min(scrollY * .028, 24)}px` }} onPointerMove={moveHero} onPointerLeave={resetHero}>
         <div className="hero-art" aria-hidden="true">
           <div className="hero-art-inner">
             <div className="hero-art-plane"/>
@@ -143,7 +167,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="signature" className="signature-section" aria-labelledby="signature-title">
+      <section id="signature" className="signature-section" aria-labelledby="signature-title" data-parallax-speed="0.07" data-parallax-max="22">
         <div className="container">
           <div className="signature-heading">
             <SectionLabel>BEHIND THE MARK</SectionLabel>
@@ -180,13 +204,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="philosophy" className="philosophy section-pad"><div className="container philosophy-inner"><div className="reveal"><SectionLabel light>03 / OUR PHILOSOPHY</SectionLabel><h2>Beyond the<br/><span>expected.</span></h2></div><div className="philosophy-copy reveal"><div className="philosophy-line"><span>THINK BEYOND</span><p>Look past the immediate problem. Understand the bigger picture. Find the possibilities others might miss.</p></div><div className="philosophy-line"><span>BUILD BETTER</span><p>Turn insight into practical solutions designed to create real value and lasting progress.</p></div><p className="philosophy-quote">“Technology is a means to create meaningful progress.”</p></div></div></section>
+      <section id="philosophy" className="philosophy section-pad" data-parallax-speed="0.1" data-parallax-max="65"><div className="container philosophy-inner"><div className="reveal"><SectionLabel light>03 / OUR PHILOSOPHY</SectionLabel><h2>Beyond the<br/><span>expected.</span></h2></div><div className="philosophy-copy reveal"><div className="philosophy-line"><span>THINK BEYOND</span><p>Look past the immediate problem. Understand the bigger picture. Find the possibilities others might miss.</p></div><div className="philosophy-line"><span>BUILD BETTER</span><p>Turn insight into practical solutions designed to create real value and lasting progress.</p></div><p className="philosophy-quote">“Technology is a means to create meaningful progress.”</p></div></div></section>
 
       <section id="approach" className="approach section-pad"><div className="container"><div className="approach-heading reveal"><div><SectionLabel>04 / HOW WE WORK</SectionLabel><h2>Clarity at every<br/><em>step forward.</em></h2></div><p>Thoughtful work starts with understanding. Our process keeps the right questions, people, and outcomes in focus.</p></div><div className="steps-grid">{steps.map(([num,title,desc]) => <div className="step reveal" key={num}><span className="step-num">{num} / 06</span><div className="step-marker"><span/></div><h3>{title}</h3><p>{desc}</p></div>)}</div></div></section>
 
       <section id="team" className="team section-pad"><div className="container"><div className="team-head reveal"><div><SectionLabel>05 / THE PEOPLE</SectionLabel><h2>People behind<br/><em>the thinking.</em></h2></div><p>A collaborative team across technology, creativity, security, and business analysis. We bring different strengths to a shared purpose.</p></div><div className="team-list reveal"><div><span>01</span><strong>Muhammad Syafiq</strong><small>CEO & Founder</small></div><div><span>02</span><strong>Nathan Chandra</strong><small>Co-Founder, COO & Project Manager</small></div><div><span>03</span><strong>Daffa Taufiq</strong><small>CTO</small></div></div><div className="team-foot reveal"><span>7–10 ACTIVE MEMBERS</span><p>Additional team profiles and responsibilities are being developed as our organization grows.</p></div></div></section>
 
-      <section id="contact" className="contact section-pad"><div className="container contact-inner"><div className="reveal"><SectionLabel light>06 / LET'S COLLABORATE</SectionLabel><h2>Let's build better<br/><em>possibilities</em> together.</h2><p>Have a challenge worth solving? Tell us where you want to go. We’re ready to explore what’s possible with you.</p><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer" className="button button-light">Start a conversation <ArrowUpRight size={20}/></a></div><div className="contact-bottom"><span>OPEN TO PROJECTS, CONSULTATION & COLLABORATION</span><span>SCROLL TO TOP <a href="#top" aria-label="Back to top"><ArrowUpRight size={18}/></a></span></div></div></section>
+      <section id="contact" className="contact section-pad" data-parallax-speed="0.08" data-parallax-max="55"><div className="container contact-inner"><div className="reveal"><SectionLabel light>06 / LET'S COLLABORATE</SectionLabel><h2>Let's build better<br/><em>possibilities</em> together.</h2><p>Have a challenge worth solving? Tell us where you want to go. We’re ready to explore what’s possible with you.</p><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer" className="button button-light">Start a conversation <ArrowUpRight size={20}/></a></div><div className="contact-bottom"><span>OPEN TO PROJECTS, CONSULTATION & COLLABORATION</span><span>SCROLL TO TOP <a href="#top" aria-label="Back to top"><ArrowUpRight size={18}/></a></span></div></div></section>
     </main>
 
     <footer className="footer"><div className="container"><div className="footer-main"><a href="#top"><Logo /></a><div><span>FIND US</span><a href="https://www.instagram.com/temancanggih_id/" target="_blank" rel="noopener noreferrer">Instagram <MoveUpRight size={15}/></a><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer">WhatsApp <MoveUpRight size={15}/></a></div><div><span>EXPLORE</span><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#approach">Approach</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} TEMAN CANGGIH. ALL RIGHTS RESERVED.</span><span>THINK BEYOND. BUILD BETTER.</span></div></div></footer>
