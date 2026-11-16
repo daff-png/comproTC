@@ -24,6 +24,19 @@ function Logo() {
   return <img className="brand-symbol-image" src="/tc-symbol.svg" width="68" height="44" alt="Teman Canggih TC symbol" />;
 }
 
+function HeroMonogram() {
+  return <svg className="hero-monogram" viewBox="174 189 197 126" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="hero-t" x1="180" y1="195" x2="284" y2="275" gradientUnits="userSpaceOnUse"><stop stopColor="#FFFFFF"/><stop offset=".58" stopColor="#EAF4FF"/><stop offset="1" stopColor="#B5D9FF"/></linearGradient>
+      <linearGradient id="hero-c" x1="257" y1="283" x2="365" y2="195" gradientUnits="userSpaceOnUse"><stop stopColor="#144BA8"/><stop offset=".55" stopColor="#2875F1"/><stop offset="1" stopColor="#6AE4FF"/></linearGradient>
+      <linearGradient id="hero-beam" x1="300" y1="190" x2="239" y2="309" gradientUnits="userSpaceOnUse"><stop stopColor="#E6FAFF"/><stop offset=".5" stopColor="#06B6D4"/><stop offset="1" stopColor="#60A5FA" stopOpacity="0"/></linearGradient>
+    </defs>
+    <g className="hero-mark-t"><path d="M291 195H213c-15 0-27 11-33 30l47 1-16 82c18 0 31-9 36-30l10-46 24-24 10-13Z" fill="#031126" transform="translate(0 7)"/><path d="M291 195H213c-15 0-27 11-33 30l47 1-16 82c18 0 31-9 36-30l10-46 24-24 10-13Z" fill="url(#hero-t)"/></g>
+    <g className="hero-mark-c"><path d="M302 195h63l-20 31h-40c-6 0-10 3-12 11l-5 23c-2 11 1 17 8 17h68l-26 31h-43c-25 0-38-17-38-42 0-12 2-22 5-30l40-41Z" fill="#062253" transform="translate(0 7)"/><path d="M302 195h63l-20 31h-40c-6 0-10 3-12 11l-5 23c-2 11 1 17 8 17h68l-26 31h-43c-25 0-38-17-38-42 0-12 2-22 5-30l40-41Z" fill="url(#hero-c)"/></g>
+    <path className="hero-mark-beam" d="M300 190 254 236c-5 22-10 47-17 73" stroke="url(#hero-beam)" strokeWidth="1.4" strokeLinecap="round"/>
+  </svg>;
+}
+
 function SectionLabel({ children, light = false }) {
   return <div className={`section-label ${light ? 'label-light' : ''}`}><span className="label-dot"/>{children}</div>;
 }
@@ -47,6 +60,16 @@ export default function Home() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const moveHero = (event) => {
+    if (event.pointerType !== 'mouse') return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty('--pointer-x', `${((event.clientX - rect.left) / rect.width - .5) * 24}px`);
+    event.currentTarget.style.setProperty('--pointer-y', `${((event.clientY - rect.top) / rect.height - .5) * 24}px`);
+  };
+  const resetHero = (event) => {
+    event.currentTarget.style.setProperty('--pointer-x', '0px');
+    event.currentTarget.style.setProperty('--pointer-y', '0px');
+  };
   const progress = typeof document === 'undefined' ? 0 : scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
   return <>
@@ -62,20 +85,23 @@ export default function Home() {
     </header>
 
     <main id="top">
-      <section className="hero">
-        <div className="hero-cut" aria-hidden="true" />
-        <div className="hero-panel-label" aria-hidden="true">THE TC SIGNATURE <span>HUMAN × TECHNOLOGY</span></div>
-        <div className="hero-emblem" aria-hidden="true" style={{ transform: `translateY(${Math.min(scrollY * .07, 42)}px)` }}>
-          <img className="brand-symbol-large" src="/tc-symbol.svg" width="300" height="192" alt="" />
+      <section className="hero hero-experience" style={{ '--split-left': `${-Math.min(scrollY * .028, 24)}px`, '--split-right': `${Math.min(scrollY * .028, 24)}px` }} onPointerMove={moveHero} onPointerLeave={resetHero}>
+        <div className="hero-art" aria-hidden="true">
+          <div className="hero-art-inner">
+            <div className="hero-art-plane"/>
+            <div className="hero-art-glow"/>
+            <HeroMonogram />
+            <div className="hero-art-caption"><span>HUMAN INSIGHT</span><span className="caption-line"/><span>TECHNICAL PRECISION</span></div>
+          </div>
         </div>
         <div className="hero-content container">
           <div className="hero-copy" style={{ transform: `translateY(${Math.min(scrollY * .08, 38)}px)` }}>
             <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> TEMAN CANGGIH</div>
             <h1>Think Beyond.<br/><em>Build Better.</em></h1>
-            <p>An independent team for technology and business solutions.</p>
+            <p>Human insight meets technical precision.</p>
             <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
-          <a className="hero-bottom" href="#signature">SCROLL FOR MORE <ArrowDown size={15}/></a>
+          <a className="hero-bottom" href="#signature">DISCOVER THE TC WAY <ArrowDown size={15}/></a>
         </div>
       </section>
 
