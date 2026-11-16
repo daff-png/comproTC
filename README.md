@@ -21,4 +21,4 @@ Next.js dikonfigurasi untuk static export. Hasil siap unggah ada di folder `out/
 
 ## Konten
 
-Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Logo TC pada website digambar ulang sebagai SVG berdasarkan brand guide agar tajam di semua ukuran.
+Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Logo website menggunakan gambar asli yang diberikan (`public/brand-logo-original.png`).

@@ -20,17 +20,8 @@ const steps = [
   ['06', 'Improve', 'Identify what comes next.'],
 ];
 
-function Logo({ light = false, compact = false }) {
-  return <span className={`brand ${light ? 'brand-light' : ''} ${compact ? 'brand-compact' : ''}`} aria-label="Teman Canggih">
-    <svg className="brand-symbol" viewBox="0 0 88 56" role="img" aria-label="TC logo">
-      <defs><linearGradient id="brandBlue" x1="0" y1="1" x2="1" y2="0"><stop stopColor="#173684"/><stop offset="1" stopColor="#356FF2"/></linearGradient></defs>
-      <path d="M4 17.5C9.6 7.2 16.3 4 27.2 4H50L38.6 17.5H4Z" fill="currentColor"/>
-      <path d="M34.7 10.7 24.8 51.5c-1.8 6.2-6.9 9.4-15.2 10.4L20 18.7l14.7-8Z" transform="translate(0 -5.5)" fill="currentColor"/>
-      <path d="M56 4h29L73.6 17.5H56.8c-5.4 0-8.5 2.1-9.7 7.3l-2.2 9.1c-1.2 5.3.9 7.8 6.4 7.8h32.2L72 54H48.7C34 54 26 44.9 29.4 30.3l2.7-11.5L45.9 4H56Z" fill={light ? 'currentColor' : 'url(#brandBlue)'}/>
-      <path d="M42 4h8L35.1 20.4l-2.4-4.8L42 4Z" fill={light ? '#0F172A' : '#fff'} opacity=".95"/>
-    </svg>
-    {!compact && <span className="brand-name">Teman<span>Canggih</span></span>}
-  </span>;
+function Logo() {
+  return <span className="brand-image" role="img" aria-label="Teman Canggih logo" />;
 }
 
 function SectionLabel({ children, light = false }) {
@@ -62,11 +53,10 @@ export default function Home() {
   return <>
     <div className="progress" style={{ transform: `scaleX(${progress})` }} />
     <header className={`site-header ${scrollY > 40 ? 'scrolled' : ''}`}>
-      <a href="#top" className="header-logo" onClick={closeMenu}><Logo light /></a>
+      <a href="#top" className="header-logo" onClick={closeMenu}><Logo /></a>
       <nav className={`nav-links ${menuOpen ? 'open' : ''}`} aria-label="Main navigation">
         <a href="#about" onClick={closeMenu}>About</a>
         <a href="#expertise" onClick={closeMenu}>Expertise</a>
-        <a href="#team" onClick={closeMenu}>Team</a>
         <a href="#contact" className="nav-contact" onClick={closeMenu}>Let's talk <ArrowUpRight size={15}/></a>
       </nav>
       <button className="menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X/> : <Menu/>}</button>
@@ -74,17 +64,13 @@ export default function Home() {
 
     <main id="top">
       <section className="hero">
-        <div className="hero-mark" aria-hidden="true" style={{ transform: `translate3d(0, ${Math.min(scrollY * .12, 80)}px, 0)` }}>
-          <Logo compact />
-        </div>
         <div className="hero-content container">
-          <div className="hero-copy">
+          <div className="hero-copy" style={{ transform: `translateY(${Math.min(scrollY * .08, 38)}px)` }}>
             <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> TECHNOLOGY & BUSINESS SOLUTIONS</div>
             <h1>Think Beyond.<br/><em>Build Better.</em></h1>
-            <p>Thoughtful solutions for the challenges that matter.</p>
+            <p>We turn complex challenges into purposeful solutions.</p>
             <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
-          <a className="hero-bottom" href="#about">SCROLL TO DISCOVER <ArrowDown size={14}/></a>
         </div>
       </section>
 
@@ -114,6 +100,6 @@ export default function Home() {
       <section id="contact" className="contact section-pad"><div className="container contact-inner"><div className="reveal"><SectionLabel light>06 / LET'S COLLABORATE</SectionLabel><h2>Let's build better<br/><em>possibilities</em> together.</h2><p>Have a challenge worth solving? Tell us where you want to go. We’re ready to explore what’s possible with you.</p><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer" className="button button-light">Start a conversation <ArrowUpRight size={20}/></a></div><div className="contact-bottom"><span>OPEN TO PROJECTS, CONSULTATION & COLLABORATION</span><span>SCROLL TO TOP <a href="#top" aria-label="Back to top"><ArrowUpRight size={18}/></a></span></div></div></section>
     </main>
 
-    <footer className="footer"><div className="container"><div className="footer-main"><a href="#top"><Logo light /></a><div><span>FIND US</span><a href="https://www.instagram.com/temancanggih_id/" target="_blank" rel="noopener noreferrer">Instagram <MoveUpRight size={15}/></a><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer">WhatsApp <MoveUpRight size={15}/></a></div><div><span>EXPLORE</span><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#approach">Approach</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} TEMAN CANGGIH. ALL RIGHTS RESERVED.</span><span>THINK BEYOND. BUILD BETTER.</span></div></div></footer>
+    <footer className="footer"><div className="container"><div className="footer-main"><a href="#top"><Logo /></a><div><span>FIND US</span><a href="https://www.instagram.com/temancanggih_id/" target="_blank" rel="noopener noreferrer">Instagram <MoveUpRight size={15}/></a><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer">WhatsApp <MoveUpRight size={15}/></a></div><div><span>EXPLORE</span><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#approach">Approach</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} TEMAN CANGGIH. ALL RIGHTS RESERVED.</span><span>THINK BEYOND. BUILD BETTER.</span></div></div></footer>
   </>;
 }
