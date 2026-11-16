@@ -43,9 +43,38 @@ function SectionLabel({ children, light = false }) {
 }
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const startedAt = performance.now();
+    const minimumDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700;
+    let revealTimeout;
+    let safetyTimeout;
+    let revealed = false;
+
+    const revealPage = () => {
+      if (revealed) return;
+      revealed = true;
+      window.removeEventListener('load', revealPage);
+      window.clearTimeout(safetyTimeout);
+      revealTimeout = window.setTimeout(() => {
+        setIsLoading(false);
+      }, Math.max(0, minimumDuration - (performance.now() - startedAt)));
+    };
+
+    safetyTimeout = window.setTimeout(revealPage, 4000);
+    if (document.readyState === 'complete') revealPage();
+    else window.addEventListener('load', revealPage, { once: true });
+
+    return () => {
+      window.removeEventListener('load', revealPage);
+      window.clearTimeout(revealTimeout);
+      window.clearTimeout(safetyTimeout);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -74,6 +103,14 @@ export default function Home() {
   const progress = typeof document === 'undefined' ? 0 : scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
   return <>
+    <div className={`loading-screen ${isLoading ? '' : 'loading-screen--hidden'}`} role="status" aria-hidden={!isLoading}>
+      <div className="loading-screen-content">
+        <img src="/tc-symbol.svg" width="112" height="72" alt="" className="loading-screen-logo" />
+        <span className="loading-screen-name">TEMAN CANGGIH</span>
+        <div className="loading-screen-track" aria-hidden="true"><span /></div>
+        <span className="loading-screen-caption">THINK BEYOND. BUILD BETTER.</span>
+      </div>
+    </div>
     <div className="progress" style={{ transform: `scaleX(${progress})` }} />
     <header className={`site-header ${scrollY > 40 ? 'scrolled' : ''}`}>
       <a href="#top" className="header-logo" onClick={closeMenu}><Logo /></a>
