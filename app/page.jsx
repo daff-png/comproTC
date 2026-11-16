@@ -66,7 +66,6 @@ export default function Home() {
       <nav className={`nav-links ${menuOpen ? 'open' : ''}`} aria-label="Main navigation">
         <a href="#about" onClick={closeMenu}>About</a>
         <a href="#expertise" onClick={closeMenu}>Expertise</a>
-        <a href="#approach" onClick={closeMenu}>Approach</a>
         <a href="#team" onClick={closeMenu}>Team</a>
         <a href="#contact" className="nav-contact" onClick={closeMenu}>Let's talk <ArrowUpRight size={15}/></a>
       </nav>
@@ -75,25 +74,19 @@ export default function Home() {
 
     <main id="top">
       <section className="hero">
-        <div className="hero-grid" aria-hidden="true"/>
-        <div className="hero-glow" aria-hidden="true" style={{ transform: `translate3d(0, ${Math.min(scrollY * .28, 190)}px, 0)` }}/>
-        <div className="hero-orb" aria-hidden="true" style={{ transform: `translate3d(0, ${Math.min(scrollY * .18, 140)}px, 0) rotate(${scrollY * .025}deg)` }}>
-          <div className="orb-core"><Logo light compact /></div>
-          <span className="orb-ring orb-ring-one"/><span className="orb-ring orb-ring-two"/>
-          <span className="orb-spark orb-spark-one"/><span className="orb-spark orb-spark-two"/>
+        <div className="hero-mark" aria-hidden="true" style={{ transform: `translate3d(0, ${Math.min(scrollY * .12, 80)}px, 0)` }}>
+          <Logo compact />
         </div>
         <div className="hero-content container">
           <div className="hero-copy">
-            <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> INDEPENDENT MULTIDISCIPLINARY TEAM</div>
+            <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> TECHNOLOGY & BUSINESS SOLUTIONS</div>
             <h1>Think Beyond.<br/><em>Build Better.</em></h1>
-            <p>Technology & business solutions shaped by curiosity, strategy, and the drive to create meaningful progress.</p>
-            <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore our expertise <ArrowUpRight size={18}/></a><a className="text-link" href="#about">Get to know us <ArrowDown size={17}/></a></div>
+            <p>Thoughtful solutions for the challenges that matter.</p>
+            <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
-          <div className="hero-bottom"><span>SCROLL TO EXPLORE <ArrowDown size={14}/></span><span>JAKARTA, INDONESIA <span className="tiny-cross">✳</span> WORKING BEYOND BOUNDARIES</span></div>
+          <a className="hero-bottom" href="#about">SCROLL TO DISCOVER <ArrowDown size={14}/></a>
         </div>
       </section>
-
-      <div className="capability-strip" aria-label="Our practice areas"><div className="strip-track">{[0,1].map(n => <div className="strip-set" key={n}>{['Technology','Brand Strategy','Cybersecurity','Industrial Operations','Business Strategy'].map(item => <span key={item}>{item}<b>✳</b></span>)}</div>)}</div></div>
 
       <section id="about" className="intro section-pad">
         <div className="container intro-layout">
@@ -112,15 +105,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="philosophy" className="philosophy section-pad"><div className="philosophy-light" aria-hidden="true" style={{ transform: `translateY(${Math.max(-100, (scrollY - 1700) * .09)}px)` }}/><div className="container philosophy-inner"><div className="reveal"><SectionLabel light>03 / OUR PHILOSOPHY</SectionLabel><h2>Beyond the<br/><span>expected.</span></h2></div><div className="philosophy-copy reveal"><div className="philosophy-line"><span>THINK BEYOND</span><p>Look past the immediate problem. Understand the bigger picture. Find the possibilities others might miss.</p></div><div className="philosophy-line"><span>BUILD BETTER</span><p>Turn insight into practical solutions designed to create real value and lasting progress.</p></div><p className="philosophy-quote">“Technology is a means to create meaningful progress.”</p></div></div></section>
+      <section id="philosophy" className="philosophy section-pad"><div className="container philosophy-inner"><div className="reveal"><SectionLabel light>03 / OUR PHILOSOPHY</SectionLabel><h2>Beyond the<br/><span>expected.</span></h2></div><div className="philosophy-copy reveal"><div className="philosophy-line"><span>THINK BEYOND</span><p>Look past the immediate problem. Understand the bigger picture. Find the possibilities others might miss.</p></div><div className="philosophy-line"><span>BUILD BETTER</span><p>Turn insight into practical solutions designed to create real value and lasting progress.</p></div><p className="philosophy-quote">“Technology is a means to create meaningful progress.”</p></div></div></section>
 
       <section id="approach" className="approach section-pad"><div className="container"><div className="approach-heading reveal"><div><SectionLabel>04 / HOW WE WORK</SectionLabel><h2>Clarity at every<br/><em>step forward.</em></h2></div><p>Thoughtful work starts with understanding. Our process keeps the right questions, people, and outcomes in focus.</p></div><div className="steps-grid">{steps.map(([num,title,desc]) => <div className="step reveal" key={num}><span className="step-num">{num} / 06</span><div className="step-marker"><span/></div><h3>{title}</h3><p>{desc}</p></div>)}</div></div></section>
 
-      <section className="statement"><div className="container statement-inner reveal"><span className="statement-asterisk">✳</span><p>Different perspectives.<br/><em>One direction forward.</em></p><span className="statement-caption">TECHNOLOGY × CREATIVITY × STRATEGY</span></div></section>
-
       <section id="team" className="team section-pad"><div className="container"><div className="team-head reveal"><div><SectionLabel>05 / THE PEOPLE</SectionLabel><h2>People behind<br/><em>the thinking.</em></h2></div><p>A collaborative team across technology, creativity, security, and business analysis. We bring different strengths to a shared purpose.</p></div><div className="team-list reveal"><div><span>01</span><strong>Muhammad Syafiq</strong><small>CEO & Founder</small></div><div><span>02</span><strong>Nathan Chandra</strong><small>Co-Founder, COO & Project Manager</small></div><div><span>03</span><strong>Daffa Taufiq</strong><small>CTO</small></div></div><div className="team-foot reveal"><span>7–10 ACTIVE MEMBERS</span><p>Additional team profiles and responsibilities are being developed as our organization grows.</p></div></div></section>
 
-      <section id="contact" className="contact section-pad"><div className="contact-shape" aria-hidden="true"/><div className="container contact-inner"><div className="reveal"><SectionLabel light>06 / LET'S COLLABORATE</SectionLabel><h2>Let's build better<br/><em>possibilities</em> together.</h2><p>Have a challenge worth solving? Tell us where you want to go. We’re ready to explore what’s possible with you.</p><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer" className="button button-light">Start a conversation <ArrowUpRight size={20}/></a></div><div className="contact-bottom"><span>OPEN TO PROJECTS, CONSULTATION & COLLABORATION</span><span>SCROLL TO TOP <a href="#top" aria-label="Back to top"><ArrowUpRight size={18}/></a></span></div></div></section>
+      <section id="contact" className="contact section-pad"><div className="container contact-inner"><div className="reveal"><SectionLabel light>06 / LET'S COLLABORATE</SectionLabel><h2>Let's build better<br/><em>possibilities</em> together.</h2><p>Have a challenge worth solving? Tell us where you want to go. We’re ready to explore what’s possible with you.</p><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer" className="button button-light">Start a conversation <ArrowUpRight size={20}/></a></div><div className="contact-bottom"><span>OPEN TO PROJECTS, CONSULTATION & COLLABORATION</span><span>SCROLL TO TOP <a href="#top" aria-label="Back to top"><ArrowUpRight size={18}/></a></span></div></div></section>
     </main>
 
     <footer className="footer"><div className="container"><div className="footer-main"><a href="#top"><Logo light /></a><div><span>FIND US</span><a href="https://www.instagram.com/temancanggih_id/" target="_blank" rel="noopener noreferrer">Instagram <MoveUpRight size={15}/></a><a href="https://wa.me/6289508437967" target="_blank" rel="noopener noreferrer">WhatsApp <MoveUpRight size={15}/></a></div><div><span>EXPLORE</span><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#approach">Approach</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} TEMAN CANGGIH. ALL RIGHTS RESERVED.</span><span>THINK BEYOND. BUILD BETTER.</span></div></div></footer>
