@@ -21,4 +21,4 @@ Next.js dikonfigurasi untuk static export. Hasil siap unggah ada di folder `out/
 
 ## Konten
 
-Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Logo website menggunakan gambar asli yang diberikan (`public/brand-logo-original.png`).
+Copywriting mengikuti materi yang diberikan. Portofolio proyek tidak ditampilkan karena belum ada studi kasus atau hasil yang bisa diverifikasi. Website menampilkan hanya simbol TC dari gambar logo asli (`public/brand-logo-original.png`).

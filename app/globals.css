@@ -26,16 +26,18 @@
 @media(prefers-reduced-motion:reduce){.hero-mark{transform:none!important}}
 
 /* Original logo and restrained light homepage. */
-.brand-image{display:block;width:136px;height:71px;background:#fff url('/brand-logo-original.png') center center / 150% auto no-repeat}
+.brand-symbol-image{display:block;width:64px;height:42px;background:#fff url('/brand-logo-original.png') center 43.2% / 260% auto no-repeat}
 .site-header{height:82px;color:var(--navy);background:#fff;border-bottom:1px solid #edf0f5}
 .site-header.scrolled{background:rgba(255,255,255,.94);box-shadow:0 1px 0 #e7ebf2}
 .nav-links>a:not(.nav-contact){opacity:.72}
 .nav-contact{border-color:#c6d0df;color:var(--navy)}
 .nav-contact:hover{background:var(--navy);border-color:var(--navy);color:#fff}
 .menu-toggle{color:var(--navy)}
-.hero{min-height:650px;height:88svh;max-height:920px;color:var(--navy);background:linear-gradient(120deg,#fff 0%,#fff 62%,#f7faff 100%)}
+.hero{min-height:650px;height:88svh;max-height:920px;color:var(--navy);background:#fff}
 .hero-content{padding-top:42px}
 .hero-copy{max-width:980px}
+.hero-emblem{position:absolute;z-index:1;right:7%;top:34%;width:min(27vw,300px);will-change:transform}
+.brand-symbol-large{width:100%;height:auto;aspect-ratio:210/138}
 .hero-eyebrow{color:#556987}
 .hero h1{font-size:clamp(64px,8.1vw,122px);letter-spacing:-.085em}
 .hero h1 em{background:none;color:var(--blue)}
@@ -49,6 +51,6 @@
 .service-visual{background:linear-gradient(140deg,#142e61,#0e1c39)}
 .service-visual:before,.service-visual:after{display:none}
 .service-glyph{color:#90aee6;opacity:.38;text-shadow:none}
-@media(max-width:760px){.site-header{height:72px}.site-header.scrolled{height:66px}.brand-image{width:126px;height:66px}.nav-links{background:#fff}.nav-links>a:not(.nav-contact){opacity:1}.nav-contact{color:var(--navy)}.menu-toggle,.menu-toggle[aria-expanded="true"]{color:var(--navy)}.hero{height:82svh;min-height:620px;max-height:760px}.hero-content{padding-top:50px}.hero h1{font-size:clamp(49px,11vw,72px)}.hero-copy>p{font-size:13px;max-width:350px;margin:25px 0 29px}}
+@media(max-width:760px){.site-header{height:72px}.site-header.scrolled{height:66px}.brand-symbol-image{width:58px;height:38px}.nav-links{background:#fff}.nav-links>a:not(.nav-contact){opacity:1}.nav-contact{color:var(--navy)}.menu-toggle,.menu-toggle[aria-expanded="true"]{color:var(--navy)}.hero{height:82svh;min-height:620px;max-height:760px}.hero-content{padding-top:50px}.hero-emblem{display:none}.hero h1{font-size:clamp(49px,11vw,72px)}.hero-copy>p{font-size:13px;max-width:350px;margin:25px 0 29px}}
 @media(max-width:430px){.hero h1{font-size:46px}.hero{min-height:600px}}
-@media(prefers-reduced-motion:reduce){.hero-copy{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-copy,.hero-emblem{transform:none!important}}

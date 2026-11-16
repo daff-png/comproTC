@@ -21,7 +21,7 @@ const steps = [
 ];
 
 function Logo() {
-  return <span className="brand-image" role="img" aria-label="Teman Canggih logo" />;
+  return <span className="brand-symbol-image" role="img" aria-label="Teman Canggih TC symbol" />;
 }
 
 function SectionLabel({ children, light = false }) {
@@ -64,11 +64,14 @@ export default function Home() {
 
     <main id="top">
       <section className="hero">
+        <div className="hero-emblem" aria-hidden="true" style={{ transform: `translateY(${Math.min(scrollY * .07, 42)}px)` }}>
+          <span className="brand-symbol-image brand-symbol-large" />
+        </div>
         <div className="hero-content container">
           <div className="hero-copy" style={{ transform: `translateY(${Math.min(scrollY * .08, 38)}px)` }}>
-            <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> TECHNOLOGY & BUSINESS SOLUTIONS</div>
+            <div className="eyebrow hero-eyebrow"><span className="eyebrow-line"/> TEMAN CANGGIH</div>
             <h1>Think Beyond.<br/><em>Build Better.</em></h1>
-            <p>We turn complex challenges into purposeful solutions.</p>
+            <p>An independent team for technology and business solutions.</p>
             <div className="hero-actions"><a className="button button-primary" href="#expertise">Explore what we do <ArrowUpRight size={18}/></a></div>
           </div>
         </div>
