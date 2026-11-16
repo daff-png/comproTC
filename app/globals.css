@@ -107,6 +107,8 @@
 .signature-story-result>span{color:#c8e9ff}
 .signature-story-result strong{font-size:22px;font-weight:600;letter-spacing:-.045em}
 .signature-story-result svg{position:absolute;right:24px;bottom:25px;color:#b9e5ff}
+.service-visual:before{display:block;left:auto;right:0;top:0;width:48%;height:100%;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:linear-gradient(150deg,rgba(47,115,237,.36),rgba(6,182,212,.07));clip-path:polygon(28% 0,100% 0,100% 100%,0 100%)}
+.service-visual:after{display:block;left:auto;right:0;top:0;width:48%;height:100%;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;transform:none;background:#a6e9fb;clip-path:polygon(28% 0,28.8% 0,.8% 100%,0 100%);opacity:.5}
 @media(max-width:760px){.hero-cut{width:85%;height:56%;right:-18%;clip-path:polygon(30% 0,30.8% 0,75.8% 100%,75% 100%)}.hero-panel-label{display:none}.hero-emblem{display:block;top:17%;right:7%;width:clamp(88px,24vw,140px);opacity:1}.signature-section{padding:88px 0 98px}.signature-heading{display:block;margin-bottom:38px}.signature-heading h2{font-size:clamp(45px,10vw,65px);margin:25px 0 20px}.signature-heading>p{font-size:13px;max-width:520px}.signature-layout{display:block}.signature-art{min-height:340px;margin-bottom:34px}.signature-mark{width:68%}.signature-story-item{padding:20px 0 26px}.signature-story-item h3{font-size:29px}.signature-story-result{margin-top:8px}}
 @media(max-width:430px){.signature-art{min-height:300px}.signature-art-top{left:20px;right:20px;top:20px;font-size:8px}.signature-art-bottom{left:20px;bottom:20px;font-size:8px}.signature-story-result strong{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.signature-t,.signature-c{transition:none;transform:none;opacity:1}}
