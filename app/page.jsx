@@ -109,7 +109,7 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
     }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .signature-heading, .signature-art, .signature-story, .services-list').forEach(el => observer.observe(el));
     return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('hashchange', onScroll); window.removeEventListener('resize', onScroll); reducedMotion.removeEventListener('change', onScroll); window.cancelAnimationFrame(scrollFrame); window.clearTimeout(anchorSync); observer.disconnect(); };
   }, []);
 
@@ -147,7 +147,7 @@ export default function Home() {
     </header>
 
     <main id="top">
-      <section className="hero hero-experience" data-parallax-speed="0.12" data-parallax-max="72" style={{ '--split-left': `${-Math.min(scrollY * .028, 24)}px`, '--split-right': `${Math.min(scrollY * .028, 24)}px` }} onPointerMove={moveHero} onPointerLeave={resetHero}>
+      <section className={`hero hero-experience ${isLoading ? '' : 'hero-ready'}`} data-parallax-speed="0.12" data-parallax-max="72" style={{ '--split-left': `${-Math.min(scrollY * .028, 24)}px`, '--split-right': `${Math.min(scrollY * .028, 24)}px` }} onPointerMove={moveHero} onPointerLeave={resetHero}>
         <div className="hero-art" aria-hidden="true">
           <div className="hero-art-inner">
             <div className="hero-art-plane"/>
