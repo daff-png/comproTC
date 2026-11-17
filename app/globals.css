@@ -262,3 +262,13 @@
 .signature-art.visible::after{animation:photo-light-pass 1.5s .45s cubic-bezier(.22,1,.36,1) both}
 @keyframes photo-light-pass{0%{opacity:0;transform:translateX(-150%)}20%{opacity:.5}80%{opacity:.5}100%{opacity:0;transform:translateX(150%)}}
 @media(prefers-reduced-motion:reduce){.hero-ready .hero-bottom svg{animation:none}.signature-art::after{display:none}}
+
+/* Small interactive details without changing the resting design. */
+.nav-links > a:not(.nav-contact){position:relative}
+.nav-links > a:not(.nav-contact)::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.nav-links > a:not(.nav-contact):is(:hover,:focus-visible)::after{transform:scaleX(1)}
+.header-logo .brand-symbol-image{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.header-logo:is(:hover,:focus-visible) .brand-symbol-image{transform:translateY(-2px) scale(1.04)}
+.footer-main > div > a svg,.contact-bottom a svg{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.footer-main > div > a:is(:hover,:focus-visible) svg,.contact-bottom a:is(:hover,:focus-visible) svg{transform:translate3d(3px,-3px,0)}
+@media(prefers-reduced-motion:reduce){.nav-links > a:not(.nav-contact)::after,.header-logo .brand-symbol-image,.footer-main > div > a svg,.contact-bottom a svg{transition:none}.nav-links > a:not(.nav-contact):is(:hover,:focus-visible)::after{transform:scaleX(0)}.header-logo:is(:hover,:focus-visible) .brand-symbol-image,.footer-main > div > a:is(:hover,:focus-visible) svg,.contact-bottom a:is(:hover,:focus-visible) svg{transform:none}}
