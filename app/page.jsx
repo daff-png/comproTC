@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight, Code2, Asterisk, ShieldCheck, Factory, TrendingUp } from 'lucide-react';
 
 const services = [
-  { number: '01', title: 'System Development', category: 'Technology & Engineering', description: 'Digital systems, software, applications, and infrastructure designed to support operations and digital transformation.', glyph: '⌘' },
-  { number: '02', title: 'Branding Development', category: 'Creative & Brand Strategy', description: 'Distinct brand identities, positioning, and communication systems that create a consistent, recognizable presence.', glyph: '✳' },
-  { number: '03', title: 'Cyber Analysis', category: 'Cybersecurity & Intelligence', description: 'Digital environment evaluation, potential risk identification, and recommendations to strengthen security posture.', glyph: '◇' },
-  { number: '04', title: 'Factory Consulting', category: 'Industrial & Operations', description: 'Industrial workflow and operational analysis to find opportunities for efficiency, improvement, and digitalization.', glyph: '▦' },
-  { number: '05', title: 'Business Analysis', category: 'Business & Strategy', description: 'Business requirements, process evaluation, opportunity research, and strategic recommendations for informed decisions.', glyph: '↗' },
+  { number: '01', title: 'System Development', category: 'Technology & Engineering', description: 'Digital systems, software, applications, and infrastructure designed to support operations and digital transformation.', icon: Code2 },
+  { number: '02', title: 'Branding Development', category: 'Creative & Brand Strategy', description: 'Distinct brand identities, positioning, and communication systems that create a consistent, recognizable presence.', icon: Asterisk },
+  { number: '03', title: 'Cyber Analysis', category: 'Cybersecurity & Intelligence', description: 'Digital environment evaluation, potential risk identification, and recommendations to strengthen security posture.', icon: ShieldCheck },
+  { number: '04', title: 'Factory Consulting', category: 'Industrial & Operations', description: 'Industrial workflow and operational analysis to find opportunities for efficiency, improvement, and digitalization.', icon: Factory },
+  { number: '05', title: 'Business Analysis', category: 'Business & Strategy', description: 'Business requirements, process evaluation, opportunity research, and strategic recommendations for informed decisions.', icon: TrendingUp },
 ];
 
 const steps = [
@@ -143,6 +143,7 @@ export default function Home() {
     event.currentTarget.style.setProperty('--spotlight-opacity', '0');
   };
   const progress = typeof document === 'undefined' ? 0 : scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const ActiveServiceIcon = services[activeService].icon;
 
   return <>
     <div className={`loading-screen ${isLoading ? '' : 'loading-screen--hidden'}`} role="status" aria-hidden={!isLoading}>
@@ -217,7 +218,12 @@ export default function Home() {
           <div className="section-heading reveal"><div><SectionLabel light>02 / WHAT WE DO</SectionLabel><h2>Built around<br/><em>your challenge.</em></h2></div><p>Five connected practice areas. One shared commitment to solutions that fit your objectives.</p></div>
           <div className="services-layout">
             <div className="services-list">{services.map((s, i) => <button key={s.number} className={`service-row ${activeService === i ? 'active' : ''}`} onMouseEnter={() => setActiveService(i)} onFocus={() => setActiveService(i)} onClick={() => setActiveService(i)} aria-label={`View ${s.title}`}><span className="service-number">{s.number}</span><span className="service-title">{s.title}<small>{s.category}</small></span><ArrowUpRight className="service-arrow" size={24}/></button>)}</div>
-            <div className="service-visual reveal" aria-live="polite" onPointerMove={moveServiceCard} onPointerLeave={resetServiceCard}><div className="service-spotlight" aria-hidden="true"/><div className="visual-top" key={`top-${activeService}`}><span>TC / CAPABILITY {services[activeService].number}</span><span>↗</span></div><div className="service-glyph" key={activeService}>{services[activeService].glyph}</div><div className="visual-bottom" key={`bottom-${activeService}`}><span>{services[activeService].category}</span><p>{services[activeService].description}</p></div></div>
+            <div className="service-visual reveal" aria-live="polite" onPointerMove={moveServiceCard} onPointerLeave={resetServiceCard}>
+              <div className="service-spotlight" aria-hidden="true"/>
+              <div className="visual-top" key={`top-${activeService}`}><span>TC / CAPABILITY {services[activeService].number}</span><ArrowUpRight size={20} strokeWidth={1.5} aria-hidden="true"/></div>
+              <div className="service-glyph" key={activeService} aria-hidden="true"><ActiveServiceIcon className="service-glyph-icon" strokeWidth={1.25}/></div>
+              <div className="visual-bottom" key={`bottom-${activeService}`}><span>{services[activeService].category}</span><p>{services[activeService].description}</p></div>
+            </div>
           </div>
         </div>
       </section>
